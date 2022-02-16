@@ -6,18 +6,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Personal Finance</title>
 </head>
 
 <body>
-    <header>
-        <h1>Personal Finance</h1>
-    </header>
-    <main>
-        <section>
-            
-        </section>
-    </main>
+    <h1>Personal Finance</h1>
+
+    <section class="finance-part">
+
+        <div class="finance-image">
+            <img src="./img/finance.jpg" alt="A financial Planning Image">
+        </div>
+
+        <div class="finance-calculation">
+
+            <h2>Income</h2>
+            <div class="input-box">
+                <span>Income:</span>
+                <input id="income-input" type="text" value="10000">
+            </div>
+
+
+            <h2>Expenses</h2>
+
+            <div class="input-box">
+                <span>Food:</span>
+                <input id="food-input" type="text" value="3000">
+            </div>
+
+            <div class="input-box">
+                <span>Rent:</span>
+                <input id="rent-input" type="text" value="2000">
+            </div>
+
+            <div class="input-box">
+                <span>Clothes:</span>
+                <input id="clothes-input" type="text" value="500">
+            </div>
+
+            <button id="calculate-btn">Calculate</button>
+
+            <div class="result-line">
+                <span>Total Expenses:</span>
+                <span id="total-expenses" class="highlighted-color"> 5500</span>
+            </div>
+
+            <div class="result-line">
+                <span>Balance:</span>
+                <span id="balance" class="highlighted-color"> 4500</span>
+            </div>
+            <hr>
+
+            <div class="save">
+                <span>Save:</span>
+                <input id="save-input" type="text">
+                <span>  %</span>
+                <button id="save-btn">Save</button>
+            </div>
+
+
+            <div class="result-line">
+                <span>Saving Amount:</span>
+                <span id="saving-amount" class="highlighted-color"> 2000</span>
+            </div>
+
+            <div class="result-line">
+                <span>Remaining Balance:</span>
+                <span id="remaining-balance" class="highlighted-color"> 2500</span>
+            </div>
+
+        </div>
+
+    </section>
+
 
     <script src="personal-finance.js"></script>
 </body>
