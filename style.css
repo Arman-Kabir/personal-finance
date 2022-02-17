@@ -103,6 +103,12 @@ img{
 #save-input {
     width: 90%;
 }
+/* Error Messages */
+.error{
+    color: red;
+    display: none;
+    text-align: center;
+}
 
 @media (max-width:1200px) {
     .finance-part {
