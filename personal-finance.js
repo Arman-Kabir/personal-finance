@@ -3,7 +3,7 @@ function errorChecking(error, elementId) {
 
     if (error == true) {
         document.getElementById(elementId).style.display = 'block';
-    }else{
+    } else {
         document.getElementById(elementId).style.display = 'none';
     }
 }
@@ -15,21 +15,37 @@ function updateAmount(field, amount) {
 
 // Getting Input Value
 function getInputValue(inputId) {
-    const element = document.getElementById(inputId);
+
+    const element = document.getElementById(inputId + '-input');
     const number = parseInt(element.value);
-    return number; 
+    // console.log(number);
+
+    // Input Validation: Positive number or not
+    if (number < 0 || isNaN(number)) {
+        errorChecking(true, inputId + "-error");
+    } else {
+        errorChecking(false, inputId + "-error");
+        return number;
+    }
+}
+// Getting Text Values
+
+function getTextValue(textId){
+    const element = document.getElementById(textId);
+    const number = parseInt(element.innerText);
+    return number;
 }
 
 // Calculate button click events
 document.getElementById('calculate-btn').addEventListener('click', function () {
-    
-    const income = getInputValue('income-input');
 
-    const foodExpense = getInputValue('food-input');
+    const income = getInputValue('income');
 
-    const rentExpense = getInputValue('rent-input');
+    const foodExpense = getInputValue('food');
 
-    const clothesExpense = getInputValue('clothes-input');
+    const rentExpense = getInputValue('rent');
+
+    const clothesExpense = getInputValue('clothes');
 
     const totalExpenses = foodExpense + rentExpense + clothesExpense;
 
@@ -42,9 +58,45 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     if (totalExpenses > income) {
         errorChecking(true, 'error-expenses');
         updateAmount('balance', 000);
+    } else if (isNaN(totalExpenses) || isNaN(income)) {
+        updateAmount('balance', 000);
+        updateAmount('total-expenses', 000);
     } else {
         errorChecking(false, 'error-expenses');
         updateAmount('balance', balance);
     }
-
 });
+
+// Save Button handle savings
+document.getElementById('save-btn').addEventListener('click', function () {
+    const incomeValue = getInputValue('income');
+    
+    const balanceValue = getTextValue('balance');
+   
+
+    const savePercentage = getInputValue('save');
+    
+
+    const savingAmount = incomeValue* (savePercentage/100);
+    
+
+    const remainingBalance = balanceValue - savingAmount;
+
+    if(savingAmount>balanceValue){
+        errorChecking(true,'saving-error');
+        updateAmount('saving-amount',000);
+        updateAmount('remaining-balance',000);
+    }else{
+        updateAmount('saving-amount',savingAmount);
+        updateAmount('remaining-balance',remainingBalance);
+        errorChecking(false,'saving-error');
+    }
+
+
+    // update saving amount 
+    // updateAmount('saving-amount',savingAmount);
+    // // update remaining Balance
+    // updateAmount('remaining-balance',remainingBalance);
+
+
+})

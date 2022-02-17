@@ -23,8 +23,9 @@
             <h2>Income</h2>
             <div class="input-box">
                 <span>Income:</span>
-                <input id="income-input" type="number" value="10000">
+                <input id="income-input" type="number" value="10000">  
             </div>
+            <p class="error" id="income-error">Income can't be Negative or null</p>
 
 
             <h2>Expenses</h2>
@@ -33,16 +34,21 @@
                 <span>Food:</span>
                 <input id="food-input" type="number" value="3000">
             </div>
+            <p class="error" id="food-error">Food Expense can't be Negative or null</p>
 
             <div class="input-box">
                 <span>Rent:</span>
                 <input id="rent-input" type="number" value="2000">
             </div>
+            <p class="error" id="rent-error">Rent Expense can't be Negative or null</p>
 
             <div class="input-box">
                 <span>Clothes:</span>
                 <input id="clothes-input" type="number" value="500">
             </div>
+            <p class="error" id="clothes-error">Clothes Expense can't be Negative or null</p>
+
+            <!-- <p class="error" id="error-negative-value">Expenses Can't be negative</p> -->
 
             <button id="calculate-btn">Calculate</button>
 
@@ -65,12 +71,14 @@
                 <span>%</span>
                 <button id="save-btn">Save</button>
             </div>
+            <p class="error" id="save-error">Save input can't be Negative or null</p>
 
 
             <div class="result-line">
                 <span>Saving Amount:</span>
                 <span id="saving-amount" class="highlighted-color"> 2000</span>
             </div>
+            <p class="error" id="saving-error">You can't save this amount. Please reduce the percentage.</p>
 
             <div class="result-line">
                 <span>Remaining Balance:</span>
