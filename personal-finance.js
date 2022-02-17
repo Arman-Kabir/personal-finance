@@ -88,7 +88,7 @@ document.getElementById('save-btn').addEventListener('click', function () {
 
     const remainingBalance = balanceValue - savingAmount;
 
-    if (savingAmount > balanceValue && balanceValue > 1) {
+    if (savingAmount > balanceValue && balanceValue > 0) {
 
         errorChecking(true, 'saving-error');
 
