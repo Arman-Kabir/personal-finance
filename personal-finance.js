@@ -1,4 +1,4 @@
-// error checking
+// error checking**********
 function errorChecking(error, elementId) {
 
     if (error == true) {
@@ -8,19 +8,20 @@ function errorChecking(error, elementId) {
     }
 }
 
-// Update Amounts
+
+// Update Amounts*********
 function updateAmount(field, amount) {
     document.getElementById(field).innerText = amount;
 }
 
-// Getting Input Value
+
+// Getting Input Value *****************
 function getInputValue(inputId) {
 
     const element = document.getElementById(inputId + '-input');
     const number = parseInt(element.value);
-    // console.log(number);
 
-    // Input Validation: Positive number or not
+    // Input Validation : Positive number or errors
     if (number < 0 || isNaN(number)) {
         errorChecking(true, inputId + "-error");
     } else {
@@ -28,8 +29,9 @@ function getInputValue(inputId) {
         return number;
     }
 }
-// Getting Text Values
 
+
+// Getting Text Values *********
 function getTextValue(textId) {
     const element = document.getElementById(textId);
     const number = parseInt(element.innerText);
@@ -58,33 +60,35 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     if (totalExpenses > income) {
         errorChecking(true, 'error-expenses');
         updateAmount('balance', 000);
+
     } else if (isNaN(totalExpenses) || isNaN(income)) {
         updateAmount('balance', 000);
         updateAmount('total-expenses', 000);
+
     } else {
         errorChecking(false, 'error-expenses');
         updateAmount('balance', balance);
     }
+
+    // Making save button previous values reset .So the previous error validation messages disappear.And when i re-click calculate button previous values and error msgs disappear.
+    updateAmount('saving-amount', 000);
+    updateAmount('remaining-balance', 000);
+    errorChecking(false, 'saving-error');
 });
 
-// Save Button handle savings
+// Save Button handle savings *******
 document.getElementById('save-btn').addEventListener('click', function () {
     const incomeValue = getInputValue('income');
-    console.log(incomeValue);
 
     const balanceValue = getTextValue('balance');
-    console.log(balanceValue);
-
 
     const savePercentage = getInputValue('save');
 
-
     const savingAmount = incomeValue * (savePercentage / 100);
-
 
     const remainingBalance = balanceValue - savingAmount;
 
-    if (savingAmount > balanceValue && balanceValue>1) {
+    if (savingAmount > balanceValue && balanceValue > 1) {
 
         errorChecking(true, 'saving-error');
 
@@ -93,23 +97,16 @@ document.getElementById('save-btn').addEventListener('click', function () {
         updateAmount('saving-amount', 000);
         updateAmount('remaining-balance', 000);
 
-    } else if(balanceValue<1){
+    } else if (balanceValue < 1) {
         updateAmount('saving-amount', 000);
         updateAmount('remaining-balance', 000);
         errorChecking(false, 'saving-error');
-    }else {
+
+    } else {
         updateAmount('saving-amount', savingAmount);
         updateAmount('remaining-balance', remainingBalance);
         errorChecking(false, 'saving-error');
 
         document.getElementById('saving-error').innerText = "";
     }
-
-
-    // update saving amount 
-    // updateAmount('saving-amount',savingAmount);
-    // // update remaining Balance
-    // updateAmount('remaining-balance',remainingBalance);
-
-
 });
