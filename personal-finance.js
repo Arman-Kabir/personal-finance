@@ -12,20 +12,12 @@ function errorChecking(error, elementId) {
 function updateAmount(field, amount) {
     document.getElementById(field).innerText = amount;
 }
+
 // Getting Input Value
 function getInputValue(inputId) {
     const element = document.getElementById(inputId);
     const number = parseInt(element.value);
-
-    // Checking input is positive number or something and validating
-    if(isNaN(number)){
-        console.log('not a number');
-        errorChecking(true,'error-string');
-    }else{
-        errorChecking(false,'error-string');
-        return number;
-    }
-    
+    return number; 
 }
 
 // Calculate button click events
