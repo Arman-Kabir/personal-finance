@@ -83,7 +83,11 @@ document.getElementById('save-btn').addEventListener('click', function () {
     const remainingBalance = balanceValue - savingAmount;
 
     if(savingAmount>balanceValue){
+        
         errorChecking(true,'saving-error');
+        
+        document.getElementById('saving-error').innerText += " Saving amount becomes " + savingAmount + " It is greater than balance " + balanceValue +" So, It is not allowed. ";
+
         updateAmount('saving-amount',000);
         updateAmount('remaining-balance',000);
     }else{
