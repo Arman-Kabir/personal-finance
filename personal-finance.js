@@ -30,7 +30,7 @@ function getInputValue(inputId) {
 }
 // Getting Text Values
 
-function getTextValue(textId){
+function getTextValue(textId) {
     const element = document.getElementById(textId);
     const number = parseInt(element.innerText);
     return number;
@@ -70,30 +70,39 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
 // Save Button handle savings
 document.getElementById('save-btn').addEventListener('click', function () {
     const incomeValue = getInputValue('income');
-    
+    console.log(incomeValue);
+
     const balanceValue = getTextValue('balance');
-   
+    console.log(balanceValue);
+
 
     const savePercentage = getInputValue('save');
-    
 
-    const savingAmount = incomeValue* (savePercentage/100);
-    
+
+    const savingAmount = incomeValue * (savePercentage / 100);
+
 
     const remainingBalance = balanceValue - savingAmount;
 
-    if(savingAmount>balanceValue){
-        
-        errorChecking(true,'saving-error');
-        
-        document.getElementById('saving-error').innerText += " Saving amount becomes " + savingAmount + " It is greater than balance " + balanceValue +" So, It is not allowed. ";
+    if (savingAmount > balanceValue && balanceValue>1) {
 
-        updateAmount('saving-amount',000);
-        updateAmount('remaining-balance',000);
-    }else{
-        updateAmount('saving-amount',savingAmount);
-        updateAmount('remaining-balance',remainingBalance);
-        errorChecking(false,'saving-error');
+        errorChecking(true, 'saving-error');
+
+        document.getElementById('saving-error').innerText += " Saving amount becomes " + savingAmount + " It is greater than balance " + balanceValue + " So, It is not allowed. ";
+
+        updateAmount('saving-amount', 000);
+        updateAmount('remaining-balance', 000);
+
+    } else if(balanceValue<1){
+        updateAmount('saving-amount', 000);
+        updateAmount('remaining-balance', 000);
+        errorChecking(false, 'saving-error');
+    }else {
+        updateAmount('saving-amount', savingAmount);
+        updateAmount('remaining-balance', remainingBalance);
+        errorChecking(false, 'saving-error');
+
+        document.getElementById('saving-error').innerText = "";
     }
 
 
@@ -103,4 +112,4 @@ document.getElementById('save-btn').addEventListener('click', function () {
     // updateAmount('remaining-balance',remainingBalance);
 
 
-})
+});
